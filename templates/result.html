@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dream Results – Dream Weaver Studio</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to top right, #dfe9f3, #e2ebf6);
+      color: #333;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* === Animated Background === */
+    body::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, #b3cde0 0%, transparent 70%);
+      animation: spinBG 40s linear infinite;
+      z-index: 0;
+      opacity: 0.25;
+    }
+
+    @keyframes spinBG {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .orbs {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, #5c6bc0 0%, transparent 70%);
+      opacity: 0.1;
+      animation: float 10s ease-in-out infinite alternate;
+    }
+
+    .orb:nth-child(1) { width: 180px; height: 180px; top: 15%; left: 10%; animation-delay: 0s; }
+    .orb:nth-child(2) { width: 120px; height: 120px; top: 60%; left: 20%; animation-delay: 2s; }
+    .orb:nth-child(3) { width: 200px; height: 200px; top: 30%; left: 75%; animation-delay: 4s; }
+    .orb:nth-child(4) { width: 100px; height: 100px; top: 80%; left: 80%; animation-delay: 6s; }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-30px) scale(1.1); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 960px;
+      height: 100vh;
+      margin: auto;
+      padding: 20px 30px;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.6rem;
+      margin: 5px 0 15px;
+      color: #2c3e50;
+    }
+
+    .top-section {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-grow: 1;
+      overflow: hidden;
+    }
+
+    .text-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .text-column p {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    .story-box {
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 8px 0;
+      max-height: 350px;
+      overflow-y: auto;
+      padding-right: 5px;
+      border-left: 4px solid #5c6bc0;
+      padding-left: 10px;
+      background-color: #f8f9fc;
+      border-radius: 8px;
+    }
+
+    .image-box {
+      flex: 0 0 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    h3 {
+      margin: 10px 0 5px;
+      font-size: 1rem;
+      color: #34495e;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .back-btn {
+      padding: 8px 16px;
+      background-color: #5c6bc0;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #3f51b5;
+    }
+
+    @media (max-width: 768px) {
+      html, body {
+        overflow: auto;
+      }
+
+      .container {
+        height: auto;
+      }
+
+      .top-section {
+        flex-direction: column;
+      }
+
+      .image-box img {
+        height: 200px;
+      }
+
+      .story-box {
+        max-height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Animations -->
+  <div class="orbs">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+
+  <!-- Main Results Content -->
+  <div class="container">
+    <h1>AI Dream Results</h1>
+
+    <div class="top-section">
+      <div class="text-column">
+        <p><strong>Detected Theme:</strong> {{ theme }}</p>
+        <p><strong>Detected Emotion:</strong> {{ emotion }}</p>
+
+        <h3>📖 Story:</h3>
+        <div class="story-box">{{ story }}</div>
+
+        <h3>🧠 Fun Analysis:</h3>
+        <p>{{ analysis }}</p>
+      </div>
+
+      <div class="image-box">
+        <h3>Your Dream Visual Style:</h3>
+        <img src="{{ image_url }}" alt="Dream Visual">
+      </div>
+    </div>
+
+    <div class="footer">
+      <a class="back-btn" href="{{ url_for('home') }}">🌀 Try Another Dream</a>
+      <div>© 2025 Dream Weaver Studio · Developed by <a href="https://github.com/Pappokhan" style="color: #5c6bc0; text-decoration: none;" target="_blank">Pappo Khan</a></div>
+    </div>
+  </div>
+
+</body>
+</html>

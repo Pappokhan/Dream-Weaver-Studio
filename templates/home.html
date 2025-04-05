@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dream Weaver Studio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+      animation: drift 60s linear infinite;
+    }
+
+    @keyframes drift {
+      0% { background-position: 0 0; }
+      100% { background-position: 400px 400px; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 30px;
+    }
+
+    .card {
+      max-width: 700px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      padding: 50px 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: fadeInUp 0.8s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #dfe6ec;
+      margin-bottom: 30px;
+    }
+
+    .start-btn {
+      padding: 14px 30px;
+      font-size: 1rem;
+      background-color: #5c6bc0;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .start-btn:hover {
+      background-color: #3f51b5;
+      transform: scale(1.05);
+    }
+
+    .ai-orbs {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      height: 80%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #90caf9;
+      border-radius: 50%;
+      animation: floatOrbs 20s infinite ease-in-out alternate;
+      opacity: 0.2;
+    }
+
+    .orb:nth-child(2) {
+      top: 70%;
+      left: 80%;
+      animation-delay: 2s;
+    }
+
+    .orb:nth-child(3) {
+      top: 40%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    .orb:nth-child(4) {
+      top: 60%;
+      left: 50%;
+      animation-delay: 6s;
+    }
+
+    @keyframes floatOrbs {
+      0%   { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-50px) scale(1.4); }
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- AI Animated Background Orbs -->
+  <div class="ai-orbs">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h1>🌙 Dream Weaver Studio</h1>
+      <p>
+        Turn your wildest dreams into AI-generated stories and art.<br>
+        Describe your dream, and let our intelligent storyteller turn it into a magical journey.
+      </p>
+      <a class="start-btn" href="{{ url_for('home') }}">Start Dreaming</a>
+      <div class="footer">© 2025 Dream Weaver Studio · Developed by <a href="https://github.com/Pappokhan" style="color: #5c6bc0; text-decoration: none;" target="_blank">Pappo Khan</a></div>
+    </div>
+  </div>
+</body>
+</html>
